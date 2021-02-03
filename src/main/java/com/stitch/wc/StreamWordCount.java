@@ -11,14 +11,14 @@ public class StreamWordCount {
         StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
 
         // 从文件中读取数据
-        String inputPath = "D:\\code\\flink\\FlinkTutorial\\src\\main\\resources\\hello.txt";
-        DataStream<String> inputDataStream = env.readTextFile(inputPath);
+        //String inputPath = "D:\\code\\flink\\FlinkTutorial\\src\\main\\resources\\hello.txt";
+        //DataStream<String> inputDataStream = env.readTextFile(inputPath);
 
         // 流式数据源
-//        ParameterTool parameterTool = ParameterTool.fromArgs(args);
-//        String host = parameterTool.get("host");
-//        int port = parameterTool.getInt("port");
-//        DataStream<String> inputDataStream = env.socketTextStream(host, port);
+        ParameterTool parameterTool = ParameterTool.fromArgs(args);
+        String host = parameterTool.get("host");
+        int port = parameterTool.getInt("port");
+        DataStream<String> inputDataStream = env.socketTextStream(host, port);
 
         // 基于流式数据处理
         DataStream<Tuple2<String, Integer>> wordCountDataStream = inputDataStream
